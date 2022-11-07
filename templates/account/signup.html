@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4 d-flex justify-content-center">
+    <div class="card p-4 pt-2 bg-light d-flex justify-content-center shadow p-3 mb-5 bg-white rounded">
+        <form method="post">
+            {% csrf_token %}
+            {% for error in form.non_field_errors %}
+            <div class="alert alert-error text-danger">
+              <strong>{{ error|escape }}</strong>
+            </div>
+            {% endfor %}
+            <h1 class="d-flex justify-content-center mb-4" id="form2Example1">sign up</h1>
+            <input class="form-control mb-3" name="email" type="text" id="form2Example1" placeholder="Email" required> 
+            {% if form.email.errors %}
+            <div class="alert alert-error text-danger">
+                <strong>{{form.email.errors}}</strong>
+              </div>
+            {% endif %}
+            <input class="form-control mb-3" name="password1" type="password" id="form2Example1" placeholder="Password" required>
+            {% if form.password1.errors %}
+            <div class="alert alert-error text-danger">
+                <strong>{{form.password1.errors}}</strong>
+              </div>
+            {% endif %}
+            <input class="form-control mb-3" name="password2" type="password" id="form2Example1" placeholder="Confirm Password" required>
+            {% if form.password2.errors %}
+            <div class="alert alert-error text-danger">
+                <strong>{{form.password2.errors}}</strong>
+              </div>
+            {% endif %}
+            <div class="terms mb-3">
+                <input type="checkbox" name="t&c" value="terms"> I agree with the <a class="text-decoration-none text-primary" href="#" >terms</a> and<a class="text-decoration-none text-primary" href="#"> Privacy policy</a>
+            </div>
+            <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary btn-block mb-2 justify-content-center">Sign up</button>
+              </div>
+        </form>
+     <div class="lst">Already have an account? <a href="{% url 'account_login' %}" class="text-decoration-none text-primary">sign In</a> here</div> </div>
+    
+ </div>
+{% endblock content %}
