@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
      path('accounts/', include('allauth.urls')),
      path('tinymce/', include('tinymce.urls')),
+     path("i18n/", include("django.conf.urls.i18n")),
      path('',include('core.urls')),
 ]
 # media and static files urls
