@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # Third party app
     'allauth',
     'allauth.account',
+    'tinymce',
     # App
     'core'
 ]
