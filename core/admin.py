@@ -1,15 +1,19 @@
 from django.contrib import admin
-from .models import Hotel,Room,FeaturedHotel
+from .models import Hotel,Room,FeaturedHotel,RoomBook
 
 class RoomInHotel(admin.TabularInline):
     model = Room
-    min_num = 0
+    extra = 0
+
+@admin.register(Hotel)
 class HotelAdmin(admin.ModelAdmin):
     model = Hotel
     list_display = ["id","name","location"]
     sortable_by = ["name","location"]
     search_fields = ["id","name","location"]
     inlines = [RoomInHotel]
+
+@admin.register(FeaturedHotel)
 class FeaturedHotelAdmin(admin.ModelAdmin):
     model = FeaturedHotel
     list_display = ["id","hotel","created_at","active","updated_at"]
@@ -17,8 +21,12 @@ class FeaturedHotelAdmin(admin.ModelAdmin):
     sortable_by = ["hotel","created_at","updated_at"]
     search_fields = ["id","hotel__name","hotel__location"]
 
-admin.site.register(Hotel,HotelAdmin)
-admin.site.register(FeaturedHotel,FeaturedHotelAdmin)
-    
+@admin.register(RoomBook)
+class RoomBookAdmin(admin.ModelAdmin):
+    model = RoomBook
+    list_display = ["id","room","status","check_in_date","check_out_date"]
+    ordering = ["id","room","status","check_in_date","check_out_date"]
+    sortable_by = ["id","room","status","check_in_date","check_out_date"]
+    search_fields = ["id","room","status","check_in_date","check_out_date"]
     
 # Register your models here.

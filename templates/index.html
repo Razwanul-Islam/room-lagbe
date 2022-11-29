@@ -45,31 +45,27 @@
   <!-- Main -->
   <div class="main">
     <div class="filter">
-        <span>
+        <form action="{% url 'hotel_filter' %}" method="post">
+          <span>
+          {% csrf_token %}
           <div class="src">
-              <input list="place" name="place" placeholder="Where are you going?" required>
-              <datalist id="place">
-              <option value="cox-bazar">
-              <option value="kuakata">
-              <option value="dhaka">
-              <option value="sajek">
-              <option value="ragamati">
-              </datalist>
+              <input type="text" name="location" placeholder="Where are you going?" required>
           </div>
 
           <div class="src">
-              <input placeholder="Check In"  type="text" onfocus="(this.type='date')">
+              <input placeholder="Check In" name="check_in_date" type="text" onfocus="(this.type='date')" required>
               
           </div>
 
           <div class="src">
-              <input placeholder="Check Out" type="text" onfocus="(this.type='date')" id="date">
+              <input placeholder="Check Out" name="check_out_date" type="text" onfocus="(this.type='date')" id="date" required>
           </div>
 
           <div class="src">
               <button type="submit" id="btn"><i class="fa fa-search"></i> Search</button>
           </div>
         </span>
+        </form>
       </div>
 <div class="featured-hotel">
     <div class="flex justify-center p-1">
