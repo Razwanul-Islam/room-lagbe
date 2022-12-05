@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="heading">
+            <h3>{{ hotel.name }}</h3>
+            <p>{{ hotel.location }}</p>
+            <img class="img-fuid" src="{{ hotel.cover_photo.url }}" style="min-width:50%;max-width:100%;">
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-8">
+                <div>
+                    <u><h4>Description</h4></u>
+                </div>
+                <div>
+                    {{ hotel.description | safe }}
+                </div>
+            </div>
+
+
+            <div class="col-12 col-md-6 col-lg-4 my-3">
+                <div class="card shadow round p-3">
+                    <form action="">
+                        <h4 class="text-center"> Available !</h4>
+                        <h5>* Total cost will be $302</h5>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Your Room</label>
+                            <select name="room" id="" class="form-control">
+                                {% for room in rooms %}
+                                <option value="{{ room.id }}">{{ room.room_number }}</option>
+                                {% endfor %}          
+                            </select>
+                          </div>
+                        <div class="mb-3">
+                          <label for="" class="form-label">Check-in Date</label>
+                          <input type="date" name="check_in_date" id="" class="form-control" placeholder="" value="{{check_in_date}}" aria-describedby="helpId" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Check-out Date</label>
+                            <input type="date" name="check_in_date" id="" class="form-control" placeholder="" value="{{check_out_date}}" aria-describedby="helpId" disabled>
+                          </div>
+                        <div class="mb-3">
+                            <div class="d-grid gap-2">
+                              <button type="submit" name="" id="" class="btn btn-danger bg-gradient"> Proceed to payment for book Now!</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

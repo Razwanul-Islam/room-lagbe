@@ -10,7 +10,13 @@
                 <h6 class="text-primary"><i class="fas fa-location"></i> {{ hotel.location }}</h6>
               <h5 class="card-title">{{ hotel.name }}</h5>
               <p class="card-text">{{ hotel.moto }}</p>
-              <a href="#" class="btn btn-primary">Book Room</a>
+              <form action=" {% url 'hotel_availability' pk=hotel.id %} " method="post">
+                {% csrf_token %}
+                <input type="hidden" name="check_in_date" value="{{check_in_date}}">
+                <input type="hidden" name="check_out_date" value="{{check_out_date}}">
+                <button type="submit" class="btn btn-primary">Check Hotel</button>
+              </form>
+              
             </div>
           </div>
     </div>

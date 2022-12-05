@@ -73,7 +73,7 @@
     </div>
     <div class="card-container">
       {% for hotel in featured_hotels %}
-      <a href="#">
+      <a href=" {% url 'hotel' pk=hotel.id %} ">
         <div class="card">
           <div class="card-header">
             <img src="{{ hotel.hotel.cover_photo.url }}" alt="rover" />

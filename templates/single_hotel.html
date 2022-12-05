@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="heading">
+            <h3>{{ hotel.name }}</h3>
+            <p>{{ hotel.location }}</p>
+            <img class="img-fuid" src="{{ hotel.cover_photo.url }}" style="min-width:50%;max-width:100%;">
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-8">
+                <div>
+                    <u><h4>Description</h4></u>
+                </div>
+                <div>
+                    {{ hotel.description | safe }}
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4 my-3">
+                <div class="card shadow round p-3">
+                    <form action="{% url 'hotel_availability' pk=hotel.id %}" method="POST">
+                        {% csrf_token %}
+                        <h5>* Per night cost will be ${{ hotel.per_night_cost }}</h5>
+                        <div class="mb-3">
+                          <label for="" class="form-label">Check-in Date</label>
+                          <input type="date" name="check_in_date" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                          <small id="helpId" class="text-muted">Enter your check-in date</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Check-out Date</label>
+                            <input type="date" name="check_in_date" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                            <small id="helpId" class="text-muted">Enter your check-out date</small>
+                          </div>
+                        <div class="mb-3">
+                            <div class="d-grid gap-2">
+                              <button type="submit" name="" id="" class="btn btn-danger bg-gradient">Check Availability</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

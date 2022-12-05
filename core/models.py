@@ -15,6 +15,7 @@ class Hotel(AutoModel):
     location = models.CharField(max_length=300)
     cover_photo = models.ImageField( upload_to="images/")
     tag = models.CharField(max_length=120,default="Bangladesh,3 star")
+    per_night_cost = models.DecimalField( max_digits=5, decimal_places=2,default=0)
     def __str__(self):
         return str(self.id)+"-"+self.name
 
@@ -42,6 +43,7 @@ class RoomBook(AutoModel):
     check_in_date = models.DateField( auto_now=False, auto_now_add=False)
     check_out_date = models.DateField( auto_now=False, auto_now_add=False)
     status = models.CharField( max_length=50,choices=CHOICES)
+    total_cost = models.DecimalField( max_digits=5, decimal_places=2,default=0)
     
 
 # Create your models here.
