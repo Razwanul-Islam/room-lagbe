@@ -19,9 +19,11 @@
 
             <div class="col-12 col-md-6 col-lg-4 my-3">
                 <div class="card shadow round p-3">
-                    <form action="">
+                    <form action="{% url 'hotel_book' pk=hotel.id %}" method="POST">
+                        {% csrf_token %}
                         <h4 class="text-center"> Available !</h4>
-                        <h5>* Total cost will be $302</h5>
+                        <h5>* Total cost will be {{ total_cost }} $</h5>
+
                         <div class="mb-3">
                             <label for="" class="form-label">Your Room</label>
                             <select name="room" id="" class="form-control">
@@ -32,11 +34,11 @@
                           </div>
                         <div class="mb-3">
                           <label for="" class="form-label">Check-in Date</label>
-                          <input type="date" name="check_in_date" id="" class="form-control" placeholder="" value="{{check_in_date}}" aria-describedby="helpId" disabled>
+                          <input type="date" name="check_in_date" id="" class="form-control" placeholder="" value="{{check_in_date}}" aria-describedby="helpId">
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Check-out Date</label>
-                            <input type="date" name="check_in_date" id="" class="form-control" placeholder="" value="{{check_out_date}}" aria-describedby="helpId" disabled>
+                            <input type="date" name="check_out_date" id="" class="form-control" placeholder="" value="{{check_out_date}}" aria-describedby="helpId">
                           </div>
                         <div class="mb-3">
                             <div class="d-grid gap-2">

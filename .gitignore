@@ -1,2 +1,5 @@
 frontend_files
 db.sqlite3
+venv1
+venv
+.env
