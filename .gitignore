@@ -4,3 +4,4 @@ venv1
 venv
 .env
 media
+staticfiles
