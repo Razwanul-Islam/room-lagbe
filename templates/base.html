@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room Lagbe</title>
+    <title>Hotel Lagbe</title>
     {% load static %}
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">    -->
     <link rel="stylesheet" href="{% static './css/bootstrap.min.css' %}">
@@ -34,7 +34,7 @@
                  {% endif %}
                   
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                   </li>
                  
                 </ul>
@@ -117,51 +117,33 @@ style="background-color: #1c2331"
 <!-- Grid column -->
 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
   <!-- Links -->
-  <h6 class="text-uppercase fw-bold">Help</h6>
+  <h6 class="text-uppercase fw-bold">Shortcut Links</h6>
   <hr
       class="mb-4 mt-0 d-inline-block mx-auto"
       style="width: 60px; background-color: #7c4dff; height: 2px"
       />
   <p>
-    <a href="#!" class="text-white text-decoration-none">Help center</a>
+    <a href="/" class="text-white text-decoration-none">Home</a>
   </p>
   <p>
-    <a href="#!" class="text-white text-decoration-none">FAQs</a>
+    <a href="{% url 'user_bookings' %}" class="text-white text-decoration-none">My bookings</a>
   </p>
   <p>
-    <a href="#!" class="text-white text-decoration-none">Privacy policy</a>
+    <a class="text-white text-decoration-none" href="{% url 'contact' %}">Contact</a>
   </p>
-  <p>
-    <a href="#!" class="text-white text-decoration-none">Cookie policy</a>
-  </p>
+
   {% if user.is_authenticated %}
   <p>
     <a href="{% url 'account_logout' %}" class="text-white text-decoration-none">Logout</a>
   </p>
+  {% else %}
+  <p>
+    <a href="{% url 'account_login' %}" class="text-white text-decoration-none">Sign-In</a>
+  </p>
+  <p>
+    <a href="{% url 'account_signup' %}" class="text-white text-decoration-none">Sign-Up</a>
+  </p>
   {% endif %}
-</div>
-<!-- Grid column -->
-
-<!-- Grid column -->
-<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-  <!-- Links -->
-  <h6 class="text-uppercase fw-bold">Company</h6>
-  <hr
-      class="mb-4 mt-0 d-inline-block mx-auto"
-      style="width: 60px; background-color: #7c4dff; height: 2px"
-      />
-  <p>
-    <a href="#!" class="text-white text-decoration-none">About us</a>
-  </p>
-  <p>
-    <a href="#!" class="text-white text-decoration-none">Careers</a>
-  </p>
-  <p>
-    <a href="#!" class="text-white text-decoration-none">Press</a>
-  </p>
-  <p>
-    <a href="#!" class="text-white text-decoration-none">Blog</a>
-  </p>
 </div>
 <!-- Grid column -->
 
@@ -192,7 +174,7 @@ style="background-color: rgba(0, 0, 0, 0.2)"
 >
 © 2022 Copyright:
 <a class="text-white text-decoration-none" href=""
->roomlagbe.com</a
+>hotellagbe.com</a
 >
 </div>
 <!-- Copyright -->

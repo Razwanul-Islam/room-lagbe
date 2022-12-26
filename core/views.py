@@ -4,7 +4,7 @@ from django.views.generic import TemplateView,ListView,View,DeleteView,DetailVie
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from datetime import datetime
-from .models import FeaturedHotel, Hotel, Room, RoomBook
+from .models import FeaturedHotel, Hotel, Room, RoomBook, ContactMessage
 from django.conf import settings
 import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -117,4 +117,18 @@ class UserBooking(LoginRequiredMixin,ListView):
         status = ""
         if self.request.GET.get("status"):
             status = self.request.GET.get("status")
-        return RoomBook.objects.filter(user=self.request.user,status__icontains=status)
+        return RoomBook.objects.filter(user=self.request.user,status__icontains=status).order_by("-created_at")
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["status"] = ""
+        if self.request.GET.get("status"):
+            context["status"] = self.request.GET.get("status")
+        return context
+
+class ContactView(View):
+    template_name = "contact.html"
+    def get(self,request,*args, **kwargs):
+        return render(request,self.template_name)
+    def post(self,request,*args, **kwargs):
+        ContactMessage.objects.create(name=request.POST.get("name"),email=request.POST.get("email"),message=request.POST.get("message"))
+        return render(request,self.template_name,{"sent_success":True})

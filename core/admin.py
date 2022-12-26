@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Hotel,Room,FeaturedHotel,RoomBook
+from .models import Hotel,Room,FeaturedHotel,RoomBook,ContactMessage
 
 class RoomInHotel(admin.TabularInline):
     model = Room
@@ -28,5 +28,13 @@ class RoomBookAdmin(admin.ModelAdmin):
     ordering = ["id","room","status","check_in_date","check_out_date"]
     sortable_by = ["id","room","status","check_in_date","check_out_date"]
     search_fields = ["id","room","status","check_in_date","check_out_date"]
+
+@admin.register(ContactMessage)
+class ContactMessageAdmin(admin.ModelAdmin):
+    model = ContactMessage
+    list_display = ['name','email','message','created_at']
+    ordering = ['created_at']
+    sortable_by = ['name','email']
+    search_fields = ['id','name','email','created_at','message']
     
 # Register your models here.

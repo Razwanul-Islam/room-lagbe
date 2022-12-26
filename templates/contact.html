@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 mr-auto">
+            <h2>Contact Us</h2>
+            <p >
+                Welcome to our Hotel Lagbe!
+                <p  style="text-align: justify;" >
+                We are excited to offer a convenient and user-friendly platform for booking your perfect hotel stay. Our website offers a wide range of hotels in popular destinations around the world, at competitive prices.
+                </p><p  style="text-align: justify;">
+                Our advanced search filters allow you to easily find the hotel that best meets your needs, whether you're looking for a luxurious five-star property or a budget-friendly option. We also offer special deals and discounts, so be sure to check back often to find the best rates.
+                </p><p  style="text-align: justify;">
+                Thank you for choosing our startup hotel reservation website for all of your travel needs. We look forward to helping you plan your dream vacation!
+                </p>
+            </p>
+            <ul class="list-unstyled pl-md-5 my-5">
+                <li class="d-flex text-black mb-2">
+                    <span class="mr-3"><span class="fas fa-map m-1"></span></span> Faridpur Engineering College, Dr. Kazi Motaher Hossain Road , Faridpur <br> Bangladesh
+                </li>
+                <li class="d-flex text-black mb-2"><span class="mr-3"><span class="fas fa-phone m-1"></span></span> +880 1793 7251 21</li>
+                <li class="d-flex text-black"><span class="mr-3"><span class="fas fa-envelope m-1"></span></span>
+                    info@hotellagbe.com </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <form class="mb-5" method="post" id="contactForm" name="contactForm" novalidate="novalidate">
+                {% csrf_token %}
+                {% if sent_success %}
+            <div id="form-message-success">
+                Your message was sent, thank you!
+            </div>
+            {% endif %}
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label for="name" class="col-form-label">Name</label>
+                        <input type="text" class="form-control" name="name" id="name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label for="email" class="col-form-label">Email</label>
+                        <input type="text" class="form-control" name="email" id="email">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label for="message" class="col-form-label">Message</label>
+                        <textarea class="form-control" name="message" id="message" cols="30" rows="7"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="submit" value="Send Message" class="btn btn-primary rounded-0 py-2 px-4">
+                        <span class="submitting"></span>
+                    </div>
+                </div>
+            </form>
+            <div id="form-message-warning mt-4"></div>
+            
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

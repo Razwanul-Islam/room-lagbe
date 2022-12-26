@@ -46,6 +46,12 @@ class RoomBook(AutoModel):
     total_cost = models.DecimalField( max_digits=10, decimal_places=2,default=0)
     stripe_session_id = models.CharField(max_length=255,null=True, blank=True)
     stripe_checkout_url = models.CharField(max_length=400,null=True, blank=True)
+
+class ContactMessage(AutoModel):
+    name = models.CharField( max_length=50)
+    email = models.EmailField(max_length=254)
+    message = models.TextField()
+
     
 
 # Create your models here.
