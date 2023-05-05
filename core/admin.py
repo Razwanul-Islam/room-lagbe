@@ -13,6 +13,16 @@ class HotelAdmin(admin.ModelAdmin):
     search_fields = ["id","name","location"]
     inlines = [RoomInHotel]
 
+    def get_queryset(self, request) :
+        if request.user.is_superuser:
+            return Hotel.objects.all()
+        return Hotel.objects.filter(manager=request.user)
+    # when a user create a hotel from admin panel then he is the manager
+    def save_model(self, request, obj, form, change):
+        obj.manager = request.user
+        obj.save()
+        return super().save_model(request, obj, form, change)
+
 @admin.register(FeaturedHotel)
 class FeaturedHotelAdmin(admin.ModelAdmin):
     model = FeaturedHotel
@@ -28,6 +38,11 @@ class RoomBookAdmin(admin.ModelAdmin):
     ordering = ["id","room","status","check_in_date","check_out_date"]
     sortable_by = ["id","room","status","check_in_date","check_out_date"]
     search_fields = ["id","room","status","check_in_date","check_out_date"]
+
+    def get_queryset(self, request) :
+        if request.user.is_superuser:
+            return RoomBook.objects.all()
+        return RoomBook.objects.filter(room__hotel__manager=request.user)
 
 @admin.register(ContactMessage)
 class ContactMessageAdmin(admin.ModelAdmin):

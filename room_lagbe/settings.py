@@ -240,7 +240,8 @@ JAZZMIN_SETTINGS = {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
         "auth.Group": "fas fa-users",
-        "core.Hotel":"fas fa-home"
+        "core.Hotel":"fas fa-home",
+        "core.RoomBook":"fas fa-key"
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",

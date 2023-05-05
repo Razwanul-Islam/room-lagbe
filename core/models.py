@@ -16,6 +16,7 @@ class Hotel(AutoModel):
     cover_photo = models.ImageField( upload_to="images/")
     tag = models.CharField(max_length=120,default="Bangladesh,3 star")
     per_night_cost = models.DecimalField( max_digits=10, decimal_places=2,default=0)
+    manager = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return str(self.id)+"-"+self.name
 
